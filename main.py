@@ -34,14 +34,14 @@ if datos["cod"] == "200":
     #print(datos["list"][0]["weather"][0]["id"])
     llueve = False
     each2 = None
-    print("Santiago:")
-    tiempo = ""
+    #print("Santiago:")
+    tiempo = "Santiago:"
     for each in datos["list"]:
         id = int(each["weather"][0]["id"])
         if id < 700:
             llueve = True
         each2=each
-        print("  ",each["dt_txt"]," Temp:",each["main"]["temp"]," ",each["weather"][0]["description"])
+        #print("  ",each["dt_txt"]," Temp:",each["main"]["temp"]," ",each["weather"][0]["description"])
         tiempo = tiempo+"\n"+each["dt_txt"]+" Temp:"+str(each["main"]["temp"])+" "+each["weather"][0]["description"]
     #print(json.dumps(each, indent=4))
 else:
@@ -49,14 +49,15 @@ else:
 #print(json.dumps(each2, indent=4))
 if llueve:
     print("Recomendación: Usar paragüas")
+print(tiempo)
 
-account_sid = os.environ["account_sid"]
-auth_token  = os.environ["auth_token"]
-client = Client(account_sid, auth_token)
-phone_number = os.environ["phone_number"]
-message = client.messages.create(
-    body="Tiempo en Santiago"+f"{tiempo}",
-    from_="+12764441713",
-    to=f"{phone_number}",
-)
-print(message.body)
+# account_sid = os.environ["account_sid"]
+# auth_token  = os.environ["auth_token"]
+# client = Client(account_sid, auth_token)
+# phone_number = os.environ["phone_number"]
+# message = client.messages.create(
+#     body="Tiempo en Santiago"+f"{tiempo}",
+#     from_="+12764441713",
+#     to=f"{phone_number}",
+# )
+# print(message.body)
