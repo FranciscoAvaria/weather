@@ -4,8 +4,11 @@ Aplicación en Python que consume la API de OpenWeatherMap para obtener el pron�
 
 ---
 
-## ⚙️ Setup
+## Variables de entorno
+Crear archivo `.env`:
+WEATHER_API_KEY=tu_api_key
 
+## ⚙️ Setup
 ```bash
 git clone https://github.com/FranciscoAvaria/weather.git
 cd weather
