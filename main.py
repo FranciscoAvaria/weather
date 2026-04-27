@@ -26,10 +26,17 @@ lat=-33.4376995
 lon=-70.6510671
 load_dotenv()
 WEATHER_API_KEY = os.environ["WEATHER_API_KEY"]
+if not WEATHER_API_KEY:
+    raise ValueError("Missing WEATHER_API_KEY. Create a .env file.")
+
 response = requests.get(f"http://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={WEATHER_API_KEY}&units=metric&lang=es&cnt=8")
 datos=response.json()
 #print(json.dumps(datos, indent=4))
-if datos["cod"] == "200":
+
+#print(response.status_code)
+if response.status_code != 200:
+    raise Exception(f"API error: {response.status_code}")
+else:
     #print("OK")
     #print(datos["list"][0]["weather"][0]["id"])
     llueve = False
@@ -44,8 +51,6 @@ if datos["cod"] == "200":
         #print("  ",each["dt_txt"]," Temp:",each["main"]["temp"]," ",each["weather"][0]["description"])
         tiempo = tiempo+"\n"+each["dt_txt"]+" Temp:"+str(each["main"]["temp"])+" "+each["weather"][0]["description"]
     #print(json.dumps(each, indent=4))
-else:
-    print("Error : ",datos["Cod"])
 #print(json.dumps(each2, indent=4))
 if llueve:
     print("Recomendación: Usar paragüas")
