@@ -5,7 +5,7 @@ Aplicación en Python que consume la API de OpenWeatherMap para obtener el pron�
 ---
 
 ## Variables de entorno
-Crear archivo `.env` en la raíz:
+Crear archivo `.env` en la raíz o crear secreto en GitHub:
 WEATHER_API_KEY=tu_api_key_aqui
 
 ## ⚙️ Setup
